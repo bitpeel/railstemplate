@@ -1,4 +1,4 @@
 Recommended build command:
 ```
-rails new <APPNAME> --database=postgresql --skip-turbolinks --skip-test-unit -m <URL>
+rails new --database=postgresql --skip-turbolinks --skip-test-unit -m https://raw.githubusercontent.com/bitpeel/railstemplate/master/template.rb APPNAME
 ```
