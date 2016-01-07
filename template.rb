@@ -4,6 +4,7 @@ gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'kaminari'
 gem 'font-awesome-rails'
+gem 'puma'
 
 gem_group :development, :test do
   gem 'rspec-rails'
@@ -141,6 +142,32 @@ run("bundle binstubs rspec-core")
 
 # Generate a static page
 route "root to: 'static#index'"
+
+# Use Puma
+create_file "Procfile" do
+  <<-eos
+    web: bundle exec puma -C config/puma.rb
+  eos
+end
+create_file "config/puma.rb" do
+  <<-eos
+    workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+    threads_count = Integer(ENV['MAX_THREADS'] || 5)
+    threads threads_count, threads_count
+
+    preload_app!
+
+    rackup      DefaultRackup
+    port        ENV['PORT']     || 3000
+    environment ENV['RACK_ENV'] || 'development'
+
+    on_worker_boot do
+      # Worker specific setup for Rails 4.1+
+      # See: https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server#on-worker-boot
+      ActiveRecord::Base.establish_connection
+    end
+  eos
+end
 
 
 # Generate inital commit
