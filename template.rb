@@ -115,9 +115,9 @@ create_file "app/views/layouts/application.html.haml" do
 !!!
 %html{:lang => "en"}
   %head
-    %meta{charset: "utf-8"}/
-    %meta{content: "IE=edge", "http-equiv": "X-UA-Compatible"}/
-    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}/
+    %meta{charset: "utf-8"}
+    %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
+    %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
 
     %title = content_for(:title) || 'LocalBoy'
 
@@ -126,8 +126,8 @@ create_file "app/views/layouts/application.html.haml" do
     = csrf_meta_tags
   %body
     %header
-      == render 'layouts/navigation'
-    %main {role: "main"}
+      == render 'layouts/nav'
+    %main{role: "main"}
       #content-container
         == bootstrap_flash
         == yield
@@ -135,7 +135,7 @@ create_file "app/views/layouts/application.html.haml" do
       == render 'layouts/footer'
   eos
 end
-create_file "app/views/layouts/navbar.html.haml"
+create_file "app/views/layouts/nav.html.haml"
 create_file "app/views/layouts/footer.html.haml"
 create_file "app/helpers/bootstrap_flash_helper.rb" do
   <<-'eos'
