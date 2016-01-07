@@ -151,7 +151,7 @@ module BootstrapFlashHelper
       type = :danger  if ['alert', 'error'].include?(type)
       text = content_tag(:div, 
                content_tag(:button, raw("&times;"), :class => "close", "data-dismiss" => "alert") +
-               message, :class => "text-center alert fade in alert-#{type}")
+               message, :class => "text-center alert fade in alert-\#{type}")
       flash_messages << text if message
     end
     flash_messages.join("\n").html_safe
