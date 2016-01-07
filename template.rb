@@ -126,13 +126,13 @@ create_file "app/views/layouts/application.html.haml" do
     = csrf_meta_tags
   %body
     %header
-      == render 'layouts/nav'
+      = render 'layouts/nav'
     %main{role: "main"}
       #content-container
-        == bootstrap_flash
-        == yield
+        = bootstrap_flash
+        = yield
     %footer
-      == render 'layouts/footer'
+      = render 'layouts/footer'
   eos
 end
 create_file "app/views/layouts/nav.html.haml"
