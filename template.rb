@@ -119,10 +119,9 @@ create_file "app/views/layouts/application.html.haml" do
     %meta{content: "IE=edge", "http-equiv" => "X-UA-Compatible"}
     %meta{content: "width=device-width, initial-scale=1", name: "viewport"}
 
-    %title = content_for(:title) || 'LocalBoy'
+    %title = content_for(:title) || 'Company Name'
 
     = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'application'
     = csrf_meta_tags
   %body
     %header
@@ -133,10 +132,97 @@ create_file "app/views/layouts/application.html.haml" do
         = yield
     %footer
       = render 'layouts/footer'
+    = javascript_include_tag 'application'
   eos
 end
-create_file "app/views/layouts/nav.html.haml"
-create_file "app/views/layouts/footer.html.haml"
+create_file "app/views/layouts/_nav.html.haml" do
+  <<-eos
+%nav.navbar.navbar-default
+  .container-fluid
+    / Brand and toggle get grouped for better mobile display
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "#"} Brand
+    / Collect the nav links, forms, and other content for toggling
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li.active
+          %a{:href => "#"}
+            Link
+            %span.sr-only (current)
+        %li
+          %a{:href => "#"} Link
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Dropdown
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              %a{:href => "#"} Action
+            %li
+              %a{:href => "#"} Another action
+            %li
+              %a{:href => "#"} Something else here
+            %li.divider{:role => "separator"}
+            %li
+              %a{:href => "#"} Separated link
+            %li.divider{:role => "separator"}
+            %li
+              %a{:href => "#"} One more separated link
+      %form.navbar-form.navbar-left{:role => "search"}
+        .form-group
+          %input.form-control{:placeholder => "Search", :type => "text"}
+        %button.btn.btn-default{:type => "submit"} Submit
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          %a{:href => "#"} Link
+        %li.dropdown
+          %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+            Dropdown
+            %span.caret
+          %ul.dropdown-menu
+            %li
+              %a{:href => "#"} Action
+            %li
+              %a{:href => "#"} Another action
+            %li
+              %a{:href => "#"} Something else here
+            %li.divider{:role => "separator"}
+            %li
+              %a{:href => "#"} Separated link
+    / /.navbar-collapse
+  / /.container-fluid
+  eos
+end
+
+create_file "app/views/layouts/_footer.html.haml" do
+  <<-'eos'
+.container
+  .row
+    .col-sm-4
+      = "© #{Date.current.year} Company Name"
+    .col-sm-5
+      .pull-right.text-right
+        %address
+          %p
+            123 Main St.
+            %br
+            Redlands, CA 92373
+
+    .col-sm-3
+      .pull-right.text-right
+        123-123-1235
+        = link_to fa_icon('envelope-o lg', text: 'bitpeel@example.com'), root_url
+
+  %center#bitpeel-logo
+    = link_to(image_tag('https://www.bitpeel.com/images/bitpeel-logo-footer.png', class: 'img-responsive', alt: 'Los Angeles Ruby on Rails Consultants'), 'http://www.bitpeel.com/?utm_source=footers&utm_medium=logo&utm_campaign=please_change_me', target: :_blank)
+  eos
+end
+
 create_file "app/helpers/bootstrap_flash_helper.rb" do
   <<-'eos'
 module BootstrapFlashHelper
