@@ -2,5 +2,5 @@
 
 ### Recommended build command
 ```
-rails new --database=postgresql --skip-turbolinks --skip-test-unit -m https://raw.githubusercontent.com/bitpeel/railstemplate/master/template.rb APPNAME
+rails new APPNAME --database=postgresql --skip-test-unit -m https://raw.githubusercontent.com/bitpeel/railstemplate/master/template.rb
 ```
