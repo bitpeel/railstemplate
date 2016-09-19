@@ -11,10 +11,6 @@ gem_group :development, :test do
   gem 'factory_girl_rails'
 end
 
-gem_group :development do
-  gem 'quiet_assets'
-end
-
 gem_group :test do
   gem 'capybara'
   gem 'shoulda-matchers'
